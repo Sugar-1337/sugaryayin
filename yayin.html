@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canlı Yayın</title>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <style>
+        /* Video oynatıcıyı responsive hale getirelim */
+        #video-container {
+            width: 100%;
+            max-width: 800px; /* Büyük ekranlar için maksimum genişlik */
+            margin: auto;
+            position: relative;
+        }
+        video {
+            width: 100%;
+            height: auto;
+            border: 2px solid black;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2 style="text-align: center;">Canlı Yayın</h2>
+
+    <div id="video-container">
+        <video id="video" controls></video> <!-- controls ekleyerek oynatıcı kontrolleri gösteriyoruz -->
+    </div>
+
+    <script>
+      if (Hls.isSupported()) {
+          var video = document.getElementById('video');
+          var hls = new Hls();
+          hls.loadSource('https://alpha.cf-worker-fbd9ff38fead24c0.workers.dev/live/selcukbeinsports1/playlist.m3u8');
+          hls.attachMedia(video);
+          hls.on(Hls.Events.MANIFEST_PARSED, function() {
+              video.play();
+          });
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+          video.src = 'https://alpha.cf-worker-fbd9ff38fead24c0.workers.dev/live/selcukbeinsports1/playlist.m3u8';
+          video.addEventListener('canplay', function() {
+              video.play();
+          });
+      }
+    </script>
+
+</body>
+</html>
