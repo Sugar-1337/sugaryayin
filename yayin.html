@@ -33,13 +33,13 @@
       if (Hls.isSupported()) {
           var video = document.getElementById('video');
           var hls = new Hls();
-          hls.loadSource('https://alpha.cf-worker-fbd9ff38fead24c0.workers.dev/live/selcukbeinsports1/playlist.m3u8');
+          hls.loadSource('https://steep-silence-b428.yesbromro.workers.dev/https://fener2.demoscript.buzz/hls/bein-sports-1.m3u8');
           hls.attachMedia(video);
           hls.on(Hls.Events.MANIFEST_PARSED, function() {
               video.play();
           });
       } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-          video.src = 'https://alpha.cf-worker-fbd9ff38fead24c0.workers.dev/live/selcukbeinsports1/playlist.m3u8';
+          video.src = 'https://steep-silence-b428.yesbromro.workers.dev/https://fener2.demoscript.buzz/hls/bein-sports-1.m3u8';
           video.addEventListener('canplay', function() {
               video.play();
           });
